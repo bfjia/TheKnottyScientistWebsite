@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TheKnottyScientist - Handmade Crochet Creations</title>
+  <meta name="description" content="TheKnottyScientist offers handmade science and animal-themed crochet creations. Based in Hamilton, Ontario. Visit our Etsy shop for more.">
+  <meta name="keywords" content="handmade crochet, crochet science toys, crochet bacteria, crochet viruses, crochet animals, crochet organs, educational crochet, science gifts, animal-themed crochet, crochet Hamilton Ontario, science art, TheKnottyScientist, crochet decor, crochet plant cells, crochet body parts, local artisan crochet, STEM toys handmade, Instagram TheKnottyScientist">
+  <meta name="author" content="TheKnottyScientist">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-warm: #f5f0e8;
+      --bg-card: #fdfcfa;
+      --accent: #2d6a6a;
+      --accent-hover: #1e4d4d;
+      --countdown: #c0392b;
+      --text: #2c2925;
+      --text-muted: #5c564d;
+      --shadow: 0 8px 32px rgba(45, 106, 106, 0.08);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg-warm);
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(45, 106, 106, 0.06), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(45, 106, 106, 0.04), transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 640px;
+      width: 100%;
+      padding: 2.5rem 2rem;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), #4a9b9b);
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 400;
+      color: var(--accent);
+      margin: 0 0 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0 0 1rem;
+      color: var(--text-muted);
+    }
+
+    p:last-of-type {
+      margin-bottom: 1.5rem;
+    }
+
+    a {
+      color: var(--accent);
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+      border-bottom-color: var(--accent-hover);
+    }
+
+    .countdown-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35em;
+      margin-bottom: 0.5rem;
+    }
+
+    .countdown {
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--countdown);
+      background: rgba(192, 57, 43, 0.08);
+      padding: 0.2em 0.5em;
+      border-radius: 8px;
+    }
+
+    .crochet-preview {
+      margin-top: 2rem;
+    }
+
+    .crochet-preview img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(45, 106, 106, 0.08);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to TheKnottyScientist!</h1>
+    <p>
+      Based in <strong>Hamilton, Ontario</strong>, TheKnottyScientist is a local artisan offering handmade crochet creations inspired by science and animals. From bacteria and viruses to body organs and adorable animals, each item is made with care, creativity, and scientific passion.
+    </p>
+    <p>
+      These crochet items are perfect for gifts, educational tools, or quirky decor. Discover more on our Etsy store or visit our Instagram <a href="https://instagram.com/TheKnottyScientist" target="_blank" rel="noopener noreferrer">@TheKnottyScientist</a>.
+    </p>
+    <p>
+      You’ll <span class="countdown-wrap">You'll be redirected in <span class="countdown" id="seconds">15</span> seconds...</span>
+      <br>
+      Or visit directly: <a href="https://www.etsy.com/shop/TheKnottyScientist">TheKnottyScientist on Etsy</a>.
+    </p>
+
+    <!-- Local Image Display -->
+    <div class="crochet-preview">
+      <img src="./img.png" alt="Sample crochet creation by TheKnottyScientist">
+    </div>
+  </div>
+
+  <script>
+    let seconds = 15;
+    const countdownEl = document.getElementById('seconds');
+
+    const interval = setInterval(() => {
+      seconds--;
+      countdownEl.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(interval);
+        window.location.href = "https://www.etsy.com/shop/TheKnottyScientist";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
