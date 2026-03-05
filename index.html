@@ -21,11 +21,16 @@
       --text: #2c2925;
       --text-muted: #5c564d;
       --shadow: 0 8px 32px rgba(45, 106, 106, 0.08);
-      --radius: 16px;
+      --radius: clamp(12px, 3vw, 16px);
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      /* Fluid base: ~16px at 320px viewport, ~18px at 1200px */
+      font-size: clamp(16px, 2.5vw + 10px, 18px);
     }
 
     html, body {
@@ -33,7 +38,6 @@
       padding: 0;
       min-height: 100%;
       font-family: 'Outfit', sans-serif;
-      font-size: 18px;
       line-height: 1.6;
       color: var(--text);
       background: var(--bg-warm);
@@ -44,13 +48,16 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 2rem 1rem;
+      /* Scale padding: smaller on narrow screens, more on wide */
+      padding: clamp(1rem, 4vw, 2rem) clamp(0.75rem, 3vw, 1rem);
+      -webkit-tap-highlight-color: transparent;
     }
 
     .container {
-      max-width: 640px;
+      max-width: min(1280px, 92vw);
       width: 100%;
-      padding: 2.5rem 2rem;
+      /* Fluid padding: compact on mobile, spacious on desktop */
+      padding: clamp(1.25rem, 4vw, 2.5rem) clamp(1rem, 4vw, 2rem);
       background: var(--bg-card);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -64,27 +71,29 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
+      height: clamp(3px, 0.5vw, 4px);
       background: linear-gradient(90deg, var(--accent), #4a9b9b);
       border-radius: var(--radius) var(--radius) 0 0;
     }
 
     h1 {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-size: clamp(1.5rem, 4vw + 1rem, 2.25rem);
       font-weight: 400;
       color: var(--accent);
-      margin: 0 0 1.25rem;
+      margin: 0 0 clamp(0.75rem, 2vw, 1.25rem);
       letter-spacing: -0.02em;
+      line-height: 1.25;
     }
 
     p {
-      margin: 0 0 1rem;
+      margin: 0 0 clamp(0.5rem, 1.5vw, 1rem);
       color: var(--text-muted);
+      font-size: 1em;
     }
 
     p:last-of-type {
-      margin-bottom: 1.5rem;
+      margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
     }
 
     a {
@@ -93,6 +102,9 @@
       text-decoration: none;
       border-bottom: 1px solid transparent;
       transition: color 0.2s ease, border-color 0.2s ease;
+      /* Larger tap target on touch devices */
+      padding: 0.1em 0.05em;
+      margin: -0.1em -0.05em;
     }
 
     a:hover {
@@ -103,6 +115,8 @@
     .countdown-wrap {
       display: inline-flex;
       align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 0.35em;
       margin-bottom: 0.5rem;
     }
@@ -113,11 +127,11 @@
       color: var(--countdown);
       background: rgba(192, 57, 43, 0.08);
       padding: 0.2em 0.5em;
-      border-radius: 8px;
+      border-radius: clamp(6px, 1.5vw, 8px);
     }
 
     .crochet-preview {
-      margin-top: 2rem;
+      margin-top: clamp(1.25rem, 4vw, 2rem);
     }
 
     .crochet-preview img {
@@ -126,6 +140,13 @@
       border-radius: var(--radius);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
       border: 1px solid rgba(45, 106, 106, 0.08);
+    }
+
+    /* Extra-small screens: safe areas and readability */
+    @media (max-width: 380px) {
+      html {
+        font-size: 15px;
+      }
     }
   </style>
 </head>
@@ -152,7 +173,7 @@
   </div>
 
   <script>
-    let seconds = 15;
+    let seconds = 30;
     const countdownEl = document.getElementById('seconds');
 
     const interval = setInterval(() => {
